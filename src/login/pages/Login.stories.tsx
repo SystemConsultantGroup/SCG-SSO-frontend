@@ -13,7 +13,16 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => <KcPageStory />
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        realm: { registrationAllowed: false, resetPasswordAllowed: false },
+        locale: {
+          currentLanguageTag: "ko"
+        }
+      }}
+    />
+  )
 };
 
 export const WithInvalidCredential: Story = {
@@ -21,7 +30,7 @@ export const WithInvalidCredential: Story = {
     <KcPageStory
       kcContext={{
         login: {
-          username: "johndoe"
+          username: "johndoe@email.com"
         },
         messagesPerField: {
           // NOTE: The other functions of messagesPerField are derived from get() and
@@ -32,7 +41,7 @@ export const WithInvalidCredential: Story = {
           },
           get: (fieldName: string) => {
             if (fieldName === "username" || fieldName === "password") {
-              return "Invalid username or password.";
+              return "Invalid email or password.";
             }
             return "";
           }
@@ -92,23 +101,23 @@ export const WithPresetUsername: Story = {
   )
 };
 
-export const WithImmutablePresetUsername: Story = {
-  render: () => (
-    <KcPageStory
-      kcContext={{
-        auth: {
-          attemptedUsername: "max.mustermann@mail.com",
-          showUsername: true
-        },
-        usernameHidden: true,
-        message: {
-          type: "info",
-          summary: "Please re-authenticate to continue"
-        }
-      }}
-    />
-  )
-};
+// export const WithImmutablePresetUsername: Story = {
+//   render: () => (
+//     <KcPageStory
+//       kcContext={{
+//         auth: {
+//           attemptedUsername: "max.mustermann@mail.com",
+//           showUsername: true
+//         },
+//         usernameHidden: true,
+//         message: {
+//           type: "info",
+//           summary: "Please re-authenticate to continue"
+//         }
+//       }}
+//     />
+//   )
+// };
 
 export const WithSocialProviders: Story = {
   render: () => (
@@ -208,15 +217,15 @@ export const WithSocialProviders: Story = {
   )
 };
 
-export const WithoutPasswordField: Story = {
-  render: () => (
-    <KcPageStory
-      kcContext={{
-        realm: { password: false }
-      }}
-    />
-  )
-};
+// export const WithoutPasswordField: Story = {
+//   render: () => (
+//     <KcPageStory
+//       kcContext={{
+//         realm: { password: false }
+//       }}
+//     />
+//   )
+// };
 
 export const WithErrorMessage: Story = {
   render: () => (
@@ -231,56 +240,57 @@ export const WithErrorMessage: Story = {
   )
 };
 
-export const WithOneSocialProvider: Story = {
-  render: args => (
-    <KcPageStory
-      {...args}
-      kcContext={{
-        social: {
-          displayInfo: true,
-          providers: [
-            {
-              loginUrl: "google",
-              alias: "google",
-              providerId: "google",
-              displayName: "Google",
-              iconClasses: "fa fa-google"
-            }
-          ]
-        }
-      }}
-    />
-  )
-};
+// export const WithOneSocialProvider: Story = {
+//   render: args => (
+//     <KcPageStory
+//       {...args}
+//       kcContext={{
+//         social: {
+//           displayInfo: true,
+//           providers: [
+//             {
+//               loginUrl: "google",
+//               alias: "google",
+//               providerId: "google",
+//               displayName: "Google",
+//               iconClasses: "fa fa-google"
+//             }
+//           ]
+//         }
+//       }}
+//     />
+//   )
+// };
 
-export const WithTwoSocialProviders: Story = {
-  render: args => (
-    <KcPageStory
-      {...args}
-      kcContext={{
-        social: {
-          displayInfo: true,
-          providers: [
-            {
-              loginUrl: "google",
-              alias: "google",
-              providerId: "google",
-              displayName: "Google",
-              iconClasses: "fa fa-google"
-            },
-            {
-              loginUrl: "microsoft",
-              alias: "microsoft",
-              providerId: "microsoft",
-              displayName: "Microsoft",
-              iconClasses: "fa fa-windows"
-            }
-          ]
-        }
-      }}
-    />
-  )
-};
+// export const WithTwoSocialProviders: Story = {
+//   render: args => (
+//     <KcPageStory
+//       {...args}
+//       kcContext={{
+//         social: {
+//           displayInfo: true,
+//           providers: [
+//             {
+//               loginUrl: "google",
+//               alias: "google",
+//               providerId: "google",
+//               displayName: "Google",
+//               iconClasses: "fa fa-google"
+//             },
+//             {
+//               loginUrl: "microsoft",
+//               alias: "microsoft",
+//               providerId: "microsoft",
+//               displayName: "Microsoft",
+//               iconClasses: "fa fa-windows"
+//             }
+//           ]
+//         }
+//       }}
+//     />
+//   )
+// };
+
 export const WithNoSocialProviders: Story = {
   render: args => (
     <KcPageStory
@@ -294,48 +304,49 @@ export const WithNoSocialProviders: Story = {
     />
   )
 };
-export const WithMoreThanTwoSocialProviders: Story = {
-  render: args => (
-    <KcPageStory
-      {...args}
-      kcContext={{
-        social: {
-          displayInfo: true,
-          providers: [
-            {
-              loginUrl: "google",
-              alias: "google",
-              providerId: "google",
-              displayName: "Google",
-              iconClasses: "fa fa-google"
-            },
-            {
-              loginUrl: "microsoft",
-              alias: "microsoft",
-              providerId: "microsoft",
-              displayName: "Microsoft",
-              iconClasses: "fa fa-windows"
-            },
-            {
-              loginUrl: "facebook",
-              alias: "facebook",
-              providerId: "facebook",
-              displayName: "Facebook",
-              iconClasses: "fa fa-facebook"
-            },
-            {
-              loginUrl: "twitter",
-              alias: "twitter",
-              providerId: "twitter",
-              displayName: "Twitter",
-              iconClasses: "fa fa-twitter"
-            }
-          ]
-        }
-      }}
-    />
-  )
-};
+// export const WithMoreThanTwoSocialProviders: Story = {
+//   render: args => (
+//     <KcPageStory
+//       {...args}
+//       kcContext={{
+//         social: {
+//           displayInfo: true,
+//           providers: [
+//             {
+//               loginUrl: "google",
+//               alias: "google",
+//               providerId: "google",
+//               displayName: "Google",
+//               iconClasses: "fa fa-google"
+//             },
+//             {
+//               loginUrl: "microsoft",
+//               alias: "microsoft",
+//               providerId: "microsoft",
+//               displayName: "Microsoft",
+//               iconClasses: "fa fa-windows"
+//             },
+//             {
+//               loginUrl: "facebook",
+//               alias: "facebook",
+//               providerId: "facebook",
+//               displayName: "Facebook",
+//               iconClasses: "fa fa-facebook"
+//             },
+//             {
+//               loginUrl: "twitter",
+//               alias: "twitter",
+//               providerId: "twitter",
+//               displayName: "Twitter",
+//               iconClasses: "fa fa-twitter"
+//             }
+//           ]
+//         }
+//       }}
+//     />
+//   )
+// };
+
 export const WithSocialProvidersAndWithoutRememberMe: Story = {
   render: args => (
     <KcPageStory

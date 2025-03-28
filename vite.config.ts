@@ -7,7 +7,11 @@ export default defineConfig({
   plugins: [
     react(),
     keycloakify({
-      accountThemeImplementation: "none"
+      accountThemeImplementation: "none",
+      environmentVariables: [
+        { name: "SIGNUP_PAGE", default: "https://www.google.com" },
+        { name: "RECOVER_PW_PAGE", default: "https://www.google.com" }
+      ]
     })
   ]
 });
