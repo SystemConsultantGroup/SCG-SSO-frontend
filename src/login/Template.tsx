@@ -20,7 +20,7 @@ function Template(props: CustomTemplateProps) {
                         {label}
                       </MenuItem>
                     ) : (
-                      <MenuItem key={languageTag} href={href}>
+                      <MenuItem key={languageTag} component="a" href={href}>
                         {label}
                       </MenuItem>
                     )

@@ -1,15 +1,14 @@
-import { Suspense, lazy } from "react";
+import "./app.css";
+import { Suspense, lazy, useEffect, useState } from "react";
 import type { ClassKey } from "keycloakify/login";
 import type { KcContext } from "./KcContext";
 import { useI18n } from "./i18n";
 import DefaultPage from "keycloakify/login/DefaultPage";
-import { Login } from "./pages/Login";
 import { Template } from "./Template";
-import "./app.css";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Error } from "./pages/Error";
-import { useCustomTheme } from "./utils/useCustomTheme";
+import { createTheme, ThemeProvider } from "@mui/material";
 
 const UserProfileFormFields = lazy(
   () => import("keycloakify/login/UserProfileFormFields")
@@ -17,39 +16,54 @@ const UserProfileFormFields = lazy(
 
 const doMakeUserConfirmPassword = true;
 
-const currentTheme = useCustomTheme();
-
-const theme_dark = createTheme({
-  palette: {
-    mode: currentTheme
-  },
-  typography: {
-    fontFamily: [
-      '"Pretendard Variable"',
-      "Pretendard",
-      "-apple-system",
-      "BlinkMacSystemFont",
-      "system-ui",
-      "Roboto",
-      '"Helvetica Neue"',
-      '"Segoe UI"',
-      '"Apple SD Gothic Neo"',
-      '"Noto Sans KR"',
-      '"Malgun Gothic"',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-      "sans-serif"
-    ].join(",")
-  }
-});
-
 export default function KcPage(props: { kcContext: KcContext }) {
   const { kcContext } = props;
   const { i18n } = useI18n({ kcContext });
 
+  const [paletteMode, setPaletteMode] = useState<"light" | "dark">(
+    window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+  );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = (event: MediaQueryListEvent) => {
+      setPaletteMode(event.matches ? "dark" : "light");
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
+  }, []);
+
+  const theme = createTheme({
+    palette: {
+      mode: paletteMode
+    },
+    typography: {
+      fontFamily: [
+        '"Pretendard Variable"',
+        "Pretendard",
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "system-ui",
+        "Roboto",
+        '"Helvetica Neue"',
+        '"Segoe UI"',
+        '"Apple SD Gothic Neo"',
+        '"Noto Sans KR"',
+        '"Malgun Gothic"',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+        "sans-serif"
+      ].join(",")
+    }
+  });
+
   return (
-    <ThemeProvider theme={theme_dark}>
+    <ThemeProvider theme={theme}>
       <Suspense>
         {(() => {
           switch (kcContext.pageId) {

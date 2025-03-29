@@ -1,3 +1,5 @@
+import kakaoLogoWebpPath from "../assets/images/kakaotalk.webp";
+import naverLogoWebpPath from "../assets/images/naver.webp";
 import { Box, Button, Checkbox, FormControlLabel, Grid, Link, TextField, Typography } from "@mui/material";
 import { CustomPageProps } from "../../types";
 import { useState } from "react";
@@ -84,8 +86,8 @@ function Login(props: CustomPageProps<"login.ftl">) {
                 >
                   <Box
                     component="img"
-                    alt="Google"
-                    src="/image/kakaotalk.webp"
+                    alt="KakaoTalk"
+                    src={kakaoLogoWebpPath}
                     sx={{
                       width: "36px"
                     }}
@@ -105,8 +107,8 @@ function Login(props: CustomPageProps<"login.ftl">) {
                 >
                   <Box
                     component="img"
-                    alt="Google"
-                    src="/image/naver.webp"
+                    alt="Naver"
+                    src={naverLogoWebpPath}
                     sx={{
                       width: "36px"
                     }}

@@ -1,3 +1,4 @@
+import logoWebpPath from "../assets/images/scg_logo_only_image.webp";
 import { Box, Typography } from "@mui/material";
 
 function HeaderNode(props: { title: string }) {
@@ -9,7 +10,7 @@ function HeaderNode(props: { title: string }) {
       <Box
         component="img"
         alt="System Consultant Group"
-        src="/image/scg_logo_only_image.webp"
+        src={logoWebpPath}
         sx={{
           width: "3.6em"
         }}
