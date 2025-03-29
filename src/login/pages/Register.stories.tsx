@@ -14,7 +14,15 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => <KcPageStory />
+  render: () => (
+    <KcPageStory
+      kcContext={{
+        locale: {
+          currentLanguageTag: "ko"
+        }
+      }}
+    />
+  )
 };
 
 export const WithEmailAlreadyExists: Story = {
