@@ -1,6 +1,7 @@
-import { Box, Button, Checkbox, FormControlLabel, Grid2 as Grid, Link, TextField, Typography } from "@mui/material";
+import { Box, Button, Checkbox, FormControlLabel, Grid, Link, TextField, Typography } from "@mui/material";
 import { CustomPageProps } from "../../types";
 import { useState } from "react";
+import { HeaderNode } from "../utils/HeaderNode";
 
 function Login(props: CustomPageProps<"login.ftl">) {
   const { kcContext, i18n, Template } = props;
@@ -11,27 +12,7 @@ function Login(props: CustomPageProps<"login.ftl">) {
   const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
 
   return (
-    <Template
-      kcContext={kcContext}
-      i18n={i18n}
-      headerNode={
-        <>
-          {/** SCG 로고 이미지 */}
-          <Box
-            component="img"
-            alt="System Consultant Group"
-            src="/image/scg_logo_only_image.webp"
-            sx={{
-              width: "3.6em"
-            }}
-          />
-          {/** 제목 */}
-          <Typography variant="h4" fontWeight="bold" textAlign="center" sx={{ marginBottom: "20px" }}>
-            {msgStr("doLogIn")}
-          </Typography>
-        </>
-      }
-    >
+    <Template kcContext={kcContext} i18n={i18n} headerNode={<HeaderNode title={msgStr("doLogIn")} />}>
       {/** 로그인 제출 폼 */}
       <form
         onSubmit={() => {
