@@ -9,6 +9,7 @@ import "./app.css";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { Register } from "./pages/Register";
 import { Error } from "./pages/Error";
+import { useCustomTheme } from "./utils/useCustomTheme";
 
 const UserProfileFormFields = lazy(
   () => import("keycloakify/login/UserProfileFormFields")
@@ -16,9 +17,11 @@ const UserProfileFormFields = lazy(
 
 const doMakeUserConfirmPassword = true;
 
+const currentTheme = useCustomTheme();
+
 const theme_dark = createTheme({
   palette: {
-    mode: "dark"
+    mode: currentTheme
   },
   typography: {
     fontFamily: [
