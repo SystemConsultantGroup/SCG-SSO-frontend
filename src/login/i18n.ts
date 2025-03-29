@@ -38,6 +38,19 @@ const { useI18n, ofTypeI18n } = i18nBuilder
       roleStranger: "Other",
       studentNumber: "Student Number",
       studentMajor: "Major"
+    },
+    "zh-TW": {
+      doLogInKakao: "使用KaKao賬戶繼續",
+      doLogInNaver: "使用Naver賬戶繼續",
+      doConfirmUsernameUnique: "確認重複",
+      registerRole: "區分",
+      roleStudent: "學生",
+      roleProfessor: "教師",
+      roleEnterprise: "公司成員",
+      roleManager: "管理人",
+      roleStranger: "其他",
+      studentNumber: "學號",
+      studentMajor: "專業"
     }
   })
   .build();

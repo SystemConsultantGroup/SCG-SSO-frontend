@@ -57,7 +57,7 @@ function Login(props: CustomPageProps<"login.ftl">) {
                 <FormControlLabel control={<Checkbox name="rememberMe" defaultChecked={!!login.rememberMe} />} label={msgStr("rememberMe")} />
               )}
               {realm.resetPasswordAllowed && (
-                <Typography href={kcContext.properties.RECOVER_PW_PAGE} component={Link}>
+                <Typography href={url.loginResetCredentialsUrl} component={Link}>
                   {msgStr("doForgotPassword")}
                 </Typography>
               )}
@@ -122,7 +122,7 @@ function Login(props: CustomPageProps<"login.ftl">) {
           {realm.password && realm.registrationAllowed && !registrationDisabled && (
             <Grid container gap={0.5}>
               <Typography>{msgStr("noAccount")}</Typography>
-              <Typography href={kcContext.properties.SIGNUP_PAGE} component={Link}>
+              <Typography href={url.registrationUrl} component={Link}>
                 {msgStr("doRegister")}
               </Typography>
             </Grid>

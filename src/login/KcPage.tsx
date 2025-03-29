@@ -8,7 +8,7 @@ import { Template } from "./Template";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Error } from "./pages/Error";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { CssBaseline, createTheme, ThemeProvider } from "@mui/material";
 
 const UserProfileFormFields = lazy(
   () => import("keycloakify/login/UserProfileFormFields")
@@ -39,7 +39,10 @@ export default function KcPage(props: { kcContext: KcContext }) {
 
   const theme = createTheme({
     palette: {
-      mode: paletteMode
+      mode: paletteMode,
+      background: {
+        default: paletteMode === "dark" ? "#101012" : "#ffffff"
+      }
     },
     typography: {
       fontFamily: [
@@ -64,6 +67,7 @@ export default function KcPage(props: { kcContext: KcContext }) {
 
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Suspense>
         {(() => {
           switch (kcContext.pageId) {

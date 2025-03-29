@@ -544,7 +544,7 @@
         "favourite_pet": ["cat"],
         "bio": ["Hello I'm Test User and I do not exist."],
         "phone_number": ["1111111111"],
-        "locale": ["en"],
+        "locale": ["zh-TW"],
         "favorite_media": ["movies", "series"]
       },
       "createdTimestamp": 1716183898408,

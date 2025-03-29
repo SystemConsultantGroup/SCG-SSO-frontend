@@ -9,7 +9,7 @@ function Template(props: CustomTemplateProps) {
   return (
     <Box display="flex" alignItems="center" justifyContent="center" height="100vh">
       <Box width="460px">
-        <Card sx={{ padding: "20px", backgroundColor: "var(--color-secondary)", borderRadius: "12px" }}>
+        <Card sx={{ padding: "20px", borderRadius: "12px" }}>
           <CardContent>
             <Box display="flex" justifyContent="end">
               <FormControl variant="standard" sx={{ m: 0.2, minWidth: 120 }}>
