@@ -32,7 +32,7 @@ function Template(props: CustomTemplateProps) {
               {headerNode}
             </Box>
             {displayMessage && message !== undefined && (message.type !== "warning" || !isAppInitiatedAction) && (
-              <Stack sx={{ marginBottom: "10px", width: "100%" }} spacing={2}>
+              <Stack width="100%" spacing={2}>
                 {["success", "warning", "error", "info"].includes(message.type) && (
                   <Alert severity={message.type}>
                     <span dangerouslySetInnerHTML={{ __html: message.summary }}></span>
@@ -40,6 +40,7 @@ function Template(props: CustomTemplateProps) {
                 )}
               </Stack>
             )}
+            <Box height="10px" />
             {children}
           </CardContent>
         </Card>
