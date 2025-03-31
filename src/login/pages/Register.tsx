@@ -34,6 +34,7 @@ function Register(props: CustomPageProps<"register.ftl">) {
           <Grid size={12}>
             <PasswordField
               id="password"
+              name="password"
               label={msgStr("password")}
               autoComplete="password"
               error={messagesPerField.existsError("password", "password-confirm")}
@@ -45,6 +46,7 @@ function Register(props: CustomPageProps<"register.ftl">) {
           <Grid size={12}>
             <PasswordField
               id="passwordConfirm"
+              name="password-confirm"
               label={msgStr("passwordConfirm")}
               autoComplete="password"
               error={messagesPerField.existsError("password", "password-confirm")}

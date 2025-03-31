@@ -40,7 +40,7 @@ function Template(props: CustomTemplateProps) {
                 )}
               </Stack>
             )}
-            <Box height="10px" />
+            <Box height="20px" />
             {children}
           </CardContent>
         </Card>

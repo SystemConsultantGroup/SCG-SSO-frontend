@@ -53,6 +53,7 @@ function Login(props: CustomPageProps<"login.ftl">) {
             <Grid size={12} container spacing={0}>
               <PasswordField
                 id="password"
+                name="password"
                 label={msgStr("password")}
                 autoComplete="current-password"
                 error={messagesPerField.existsError("password")}
