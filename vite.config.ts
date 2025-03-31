@@ -4,5 +4,8 @@ import { keycloakify } from "keycloakify/vite-plugin";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), keycloakify({ accountThemeImplementation: "none" })]
+  plugins: [
+    react(),
+    keycloakify({ themeName: "SCG-theme", accountThemeImplementation: "none" })
+  ]
 });
