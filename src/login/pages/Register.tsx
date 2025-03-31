@@ -1,29 +1,13 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  Grid,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  TextField,
-  Typography
-} from "@mui/material";
+import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent, TextField, Typography } from "@mui/material";
 import { CustomPageProps } from "../../types";
 import { HeaderNode } from "../utils/HeaderNode";
 import { useState } from "react";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { PasswordField } from "../utils/PasswordField";
 
 function Register(props: CustomPageProps<"register.ftl">) {
   const { kcContext, i18n, Template } = props;
-  const { url } = kcContext;
+  const { url, messagesPerField } = kcContext;
   const { msgStr } = i18n;
-
-  const [showPassword, setShowPassword] = useState(false);
-  const handleClickPassword = () => setShowPassword(prev => !prev);
 
   const [role, setRole] = useState("");
   const handleChangeRole = (e: SelectChangeEvent) => setRole(e.target.value as string);
@@ -48,32 +32,23 @@ function Register(props: CustomPageProps<"register.ftl">) {
           </Grid>
           {/** 비밀번호 */}
           <Grid size={12}>
-            <TextField
-              type={showPassword ? "text" : "password"}
-              name="password"
+            <PasswordField
+              id="password"
               label={msgStr("password")}
               autoComplete="password"
+              error={messagesPerField.existsError("password", "password-confirm")}
+              helperText={messagesPerField.getFirstError("password")}
               fullWidth
-              slotProps={{
-                input: {
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton onClick={handleClickPassword} edge="end">
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  )
-                }
-              }}
             />
           </Grid>
           {/** 비밀번호 확인 */}
           <Grid size={12}>
-            <TextField
-              type={showPassword ? "text" : "password"}
-              name="password-confirm"
+            <PasswordField
+              id="passwordConfirm"
               label={msgStr("passwordConfirm")}
               autoComplete="password"
+              error={messagesPerField.existsError("password", "password-confirm")}
+              helperText={messagesPerField.getFirstError("password-confirm")}
               fullWidth
             />
           </Grid>
